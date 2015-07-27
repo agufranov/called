@@ -1,0 +1,28 @@
+template(name='phones')
+  +esInput(index='phones' timeout=10 allDocsOnEmpty=true)
+
+  .collection
+    +esEach(index='phones')
+      +phone
+  +esPagination(index='phones')
+
+  +phone_create
+
+template(name='phone')
+  a.collection-item(href='{{pathFor "phone_edit"}}')
+    .row(style="cursor: pointer;")
+      .col.s2 {{createdAtCalendar}}
+      .col.s2 {{phone}}
+      .col.s8 {{comment}}
+
+template(name='phone_create')
+  h4 Add
+  +autoForm(id='phone_create_form' collection='Phones' type='insert')
+    +afQuickField(name='phone' type='tel')
+     
+template(name='phone_edit')
+  +autoForm(id='phone_edit_form' collection='Phones' type='update' doc=this preserveForm=false)
+    +afQuickField(name='phone')
+    +afQuickField(name='comment' class='materialize-textarea')
+    button.btn(type='submit') OK
+    +quickRemoveButton(collection='Phones' _id=this._id class='btn red' beforeRemove=beforeRemove)
