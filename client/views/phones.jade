@@ -18,7 +18,7 @@ template(name='phone')
 template(name='phone_create')
   h4 Add
   +autoForm(id='phone_create_form' collection='Phones' type='insert')
-    +afQuickField(name='phone' type='tel')
+    +afQuickField(name='phone')
      
 template(name='phone_edit')
   +autoForm(id='phone_edit_form' collection='Phones' type='update' doc=this preserveForm=false)

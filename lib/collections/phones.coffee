@@ -1,7 +1,7 @@
 PhoneSchema = new SimpleSchema
-  phone: type: String, regEx: /[0-9]{10}/, min: 10, max: 10
+  phone: type: String, regEx: /[0-9]{10}/, min: 10, max: 10, index: true, unique: true
   comment: type: String, optional: true
-  createdAt: type: Date, autoValue: -> new Date()
+  createdAt: type: Date, autoValue: -> new Date() if @isInsert
 
 @Phones = new Meteor.Collection 'phones'
 
